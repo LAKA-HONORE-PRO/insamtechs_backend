@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\VideothequeController;
 use App\Http\Controllers\Api\FormationController;
 use App\Http\Controllers\Api\BibliothequeController;
 use App\Http\Controllers\Api\FasciculeController;
+use App\Http\Controllers\Api\JobDescriptionController;
 
 
 /*
@@ -59,10 +60,22 @@ Route::get('/livres_by_category/{slug}', [BibliothequeController::class, 'getByC
 Route::get('/filieres',[FasciculeController::class,'filieres']);
 Route::get('/filiere/{slug}',[FasciculeController::class,'filiere']);
 Route::get('/series_filiere/{slug}',[FasciculeController::class,'getSeriesByFiliere']);
-
+Route::get('/categories_fascicule/{slug}',[FasciculeController::class,'getCategoriesBySerie']);
+Route::get('/serie/{slug}', [FasciculeController::class, 'getSerie']);
+Route::get('fascicules_categorie/{slug}', [FasciculeController::class, 'getFasciculesByCategorie']);
+Route::get('/categorie_fascicule/{slug}', [FasciculeController::class, 'getCategorie']);
 
 //FIN FASCICULES
 
+
+
+//JOB DESCRIPTIONS
+Route::get('/categories_job',[JobDescriptionController::class,'index']);
+Route::get('/job_descriptions/{slug}',[JobDescriptionController::class,'getJobByCategorie']);
+
+
+
+//FIN JOB DESCRIPTION
 
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

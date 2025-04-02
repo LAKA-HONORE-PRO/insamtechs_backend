@@ -4,62 +4,52 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Categorie;
+use App\Models\Formation;
 
 class JobDescriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $per_page = $request->input('per_page');
+        $categories_jobs = Categorie::where(["type"=>4])->with('formations')->orderBy('intitule', 'asc')->paginate($per_page);
+        $other_categories = Categorie::where(["type"=>4])->orderBy('intitule', 'asc')->get();
+
+        $datas = [
+            "categories_jobs" => $categories_jobs,
+            "other_categories" => $other_categories
+        ];
+
+        return response()->json($datas);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function getJobByCategorie(String $slug, Request $request)
     {
-        //
-    }
+        $per_page = $request->input('per_page');
+        $categorie = Categorie::where('slug', $slug)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        if(!$categorie){
+            return response()->json([
+                "status"=>403,
+                "message"=>"Cette catégorie n'a pas été retrouvée"
+            ]);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $other_categories = Categorie::where(["type"=>4])->where("slug", '!=', $slug)->orderBy('intitule', 'asc')->get();
+        $jobs_descriptions = Formation::where(["categorie_id"=>$categorie->id])->paginate($per_page);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+
+        $datas = [
+            "categorie" => $categorie,
+            "jobs_descriptions" => $jobs_descriptions,
+            "other_categories"=>$other_categories,
+        ];
+
+        return response()->json($datas);
     }
 }
