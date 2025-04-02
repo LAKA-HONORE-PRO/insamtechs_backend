@@ -169,6 +169,14 @@ use App\Models\Categorie;
               <br>
             </div>
         </div>
+
+
+        <div class="row">
+           <div class="form-group col-6" id="file">
+                <label for="duree" class="form-label">Correction de l'épreuve <span style="color: red">*</span></label>
+                <input type="file" class="form-control" id="correction_file" name="fichier" accept=".pdf,.jpg,.png" required>
+            </div>
+        </div>
       
           
 
@@ -217,17 +225,17 @@ use App\Models\Categorie;
                   confirmButtonText: 'Ok',
                   })
   }
- else if(intitule == ''){
-    Swal.fire({
-                  title: 'Information!',
-                   text: "Veuillez saisir l'intitulé!!",
-                  icon: 'warning',
-                  showCancelButton: false,
-                  confirmButtonColor: '#3e53ef',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Ok',
-                  })
-  }
+//  else if(intitule == ''){
+//     Swal.fire({
+//                   title: 'Information!',
+//                    text: "Veuillez saisir l'intitulé!!",
+//                   icon: 'warning',
+//                   showCancelButton: false,
+//                   confirmButtonColor: '#3e53ef',
+//                   cancelButtonColor: '#d33',
+//                   confirmButtonText: 'Ok',
+//                   })
+//   }
   else if(prix == '')
   {
     Swal.fire({
@@ -289,7 +297,20 @@ use App\Models\Categorie;
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Ok',
                   })
+  }.
+  else if(acces == '0' && intitule == "")
+  {
+    Swal.fire({
+                  title: 'Information!',
+                   text: "L'intitulé est obligatoire si le fichier provient d'un lien externe!!",
+                  icon: 'warning',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3e53ef',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok',
+                  })
   }
+
   else{
       document.querySelector('#categorie_update').submit();
   }

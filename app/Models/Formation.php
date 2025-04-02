@@ -28,6 +28,7 @@ class Formation extends Model
         'langue_formation',
         'prix',
         'lien',
+        'correction_link',
         'nombre_de_points',
         'duree',
         'duree_composition',

@@ -1,7 +1,6 @@
 @php
 use App\Models\Categorie;
 @endphp
-
 @extends('pages.Dashboard')
 
 
@@ -98,7 +97,7 @@ use App\Models\Categorie;
 
                           <tr class="element">
                             <th scope="row">{{$i}}</th>
-                            <td class="data">{{ucfirst(Categorie::find($fascicule->categorie_id)->intitule)}}</td>
+                            <td class="data">{{ucfirst($fascicule->categorie->intitule)}}</td>
                             <td class="data">{{ucfirst($fascicule->intitule)}}</td>
                             <td class="data">{{ucfirst($fascicule->langue_formation)}}</td>
                             <td class="data">{{($fascicule->prix)}} Fcfa</td>

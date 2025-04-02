@@ -3,6 +3,8 @@
 @endphp
 
 
+@auth
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -38,6 +40,25 @@
             <button type="submit" class="btn btn-success">Sauvegarder</button>
           </div>
         </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+@endauth
+
+
+<div class="modal-1 fade" id="exampleModal-1" tabindexd="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal-1" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>
+            Cette fonctionnalité n'est disponible que si vous essayez d'y accéder avec un téléphone portable.
+          </p>
       </div>
 
     </div>
@@ -115,6 +136,12 @@
                         </figure>
             
                         <div class="portfolio-info">
+                              <div class="d-flex flex-row justify-content-center my-2">
+                                  </h4>
+                                  {{ucfirst($fascicule->intitule)}}
+                                  <h4>
+                                </div>
+
                             <?php
                                  $mot = $fascicule->lien;
     
@@ -144,16 +171,20 @@
                                   }
                                 }
                         
+                                if($fascicule->correction_link != null){
+                                  ?>  
+                                    <!-- <div class="d-flex flex-row gap-2 justify-content-center">
+                                      <a href="{{ route('hide_download_read_file', $fascicule->id) }}" class="btn btn-success see" target="_blank">Voir la correction</a>
+                                    </div>
+                                    <br> -->
+                                  <?php
+                                }
                                 
                                 // dd($cheminFichier);
                                 ?>
+
                                     
-    
-                                          {{-- </h4> --}}
-                                          &nbsp;
-                                          &nbsp;  
-                                          &nbsp;
-                                          {{-- <h4> --}}
+
                                                 <!-- @php
                                                     $questions = Question::where('formation_id', $fascicule->id)->first();
                                                 @endphp
@@ -163,7 +194,7 @@
                                                   <hr style="color: rgb(88, 16, 197)">
                                                 @endif -->
                                             
-                          <p>{{ucfirst($fascicule->intitule)}}</p>
+                          <!-- <p>{{ucfirst($fascicule->intitule)}}</p> -->
                         </div>
                       </div>
                     </div>

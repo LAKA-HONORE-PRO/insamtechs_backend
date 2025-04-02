@@ -64,7 +64,7 @@ class EtatController extends Controller
         else if($val == 1){
             ?>
               <label for="duree" class="form-label">Téléverser un fichier <span style="color: red">*</span></label>
-                <input type="file" class="form-control" id="fichier" name="fichier" accept=".pdf,.jpg,.png" required>
+                <input type="file" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
                 <br>
             <?php
         }

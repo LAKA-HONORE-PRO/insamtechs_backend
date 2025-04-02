@@ -267,6 +267,12 @@ Route::get('/detailsfascicule/{slug}', function ($slug) {
 
 
 
+Route::get('/read_file_fascicule/{slug}', [FasciculeController::class, 'hideDownloadReadFile'])->name('hide_download_read_file'); //Lecteur de fichier dans le iframe
+Route::get('/read_file', function(){
+    return View('pages.ReadFile');
+})->name('read_file');
+
+
 
 Route::get('/jobDescription', function () {
     return view('pages.JobDescription', ['categories'=>Categorie::where('type',4)->paginate(6), 'cats'=>Categorie::where('type',4)->orderBy('id', 'desc')->get()]);

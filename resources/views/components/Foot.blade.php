@@ -13,5 +13,5 @@
 <script src="{{URL::asset('chosen/chosen.jquery.js')}}" type="text/javascript" charset="utf-8"></script>
 <script src="{{URL::asset('chosen/docsupport/prism.js')}}" type="text/javascript" charset="utf-8"></script>
 <script src="{{URL::asset('chosen/docsupport/init.js')}}" type="text/javascript" charset="utf-8"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <script src="{{URL::asset('assets/js/main.js')}}"></script>

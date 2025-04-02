@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('langue_formation')->nullable();
             $table->json('prix')->nullable();
             $table->string('lien')->nullable();
+            $table->string('correction_link')->nullable();
             $table->integer('nombre_de_points')->nullable();
             $table->string('duree')->nullable();
             $table->string('duree_composition')->nullable();

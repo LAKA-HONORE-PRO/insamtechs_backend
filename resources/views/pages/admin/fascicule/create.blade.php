@@ -61,7 +61,7 @@
           @csrf
         
 
-          <div class="row">
+          <div class="row my-2">
             <div class="form-group col-6">
               <label for="categorie" class="form-label">Sélectionnez Catégorie <span style="color: red">*</span></label>
               
@@ -92,13 +92,13 @@
 
 
             <div class="form-group col-6">
-              <label for="intitule" class="form-label">Intitulé <span style="color: red">*</span></label>
+              <label for="intitule" class="form-label">Intitulé </label>
               <input type="text" class="form-control" id="intitule" name="intitule">
               <br>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row my-2">
 
             <div class="form-group col-6">
               <label for="prix" class="form-label">Prix Unitaire <span style="color: red">*</span></label>
@@ -116,7 +116,7 @@
 
 
 
-          <div class="row">
+          <div class="row my-2">
 
             <div class="form-group col-6">
               <label for="nombre_de_points" class="form-label">Langue du fascicule <span style="color: red">*</span></label>
@@ -141,17 +141,17 @@
           </div>
 
 
-          <div class="row">
+          <div class="row my-2">
 
-          <div class="form-group col-6">
-                <label for="duree" class="form-label"> Format du document <span style="color: red">*</span></label>
-                <select name="acces" id="acces" class="form-select">
-                  <option value="#" selected disabled>--Séléctionnez--</option>
-                  <option value="0">Lien</option>
-                  <option value="1">Fichier</option>
-                </select>
-                <br>
-          </div>
+            <div class="form-group col-6">
+                  <label for="duree" class="form-label"> Format du document <span style="color: red">*</span></label>
+                  <select name="acces" id="acces" class="form-select">
+                    <option value="#" selected disabled>--Séléctionnez--</option>
+                    <option value="0">Lien</option>
+                    <option value="1">Fichier</option>
+                  </select>
+                  <br>
+            </div>
 
 
 
@@ -161,8 +161,15 @@
   
               </div>
 
-
+              
           </div>
+            
+            <div class="row my-2">
+              <div class="form-group col-6">
+                  <label for="duree" class="form-label">Correction de l'épreuve <span style="color: red">*</span></label>
+                  <input type="file" class="form-control" id="correction_file" name="correction_file" accept=".pdf">
+              </div>
+            </div>
 
      <br>
 
@@ -188,6 +195,7 @@
   document.querySelector("#enregistrer").onclick = function(e){
   e.preventDefault();
 
+
   var intitule = document.querySelector("#intitule").value;
   var categorie = document.querySelector("#categorie").value;
   var prix = document.querySelector("#prix").value;
@@ -195,8 +203,9 @@
   var langue = document.querySelector("#langue").value;
   var duree_composition = document.querySelector("#duree_composition").value;
   var acces = document.querySelector("#acces").value;
+ // var correction_file = document.querySelector("#correction_file").value;
 
-  
+
 
   if(categorie == '#'){
     Swal.fire({
@@ -209,17 +218,17 @@
                   confirmButtonText: 'Ok',
                   })
   }
- else if(intitule == ''){
-    Swal.fire({
-                  title: 'Information!',
-                   text: "Veuillez saisir l'intitulé!!",
-                  icon: 'warning',
-                  showCancelButton: false,
-                  confirmButtonColor: '#3e53ef',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Ok',
-                  })
-  }
+//  else if(intitule == ''){
+//     Swal.fire({
+//                   title: 'Information!',
+//                    text: "Veuillez saisir l'intitulé!!",
+//                   icon: 'warning',
+//                   showCancelButton: false,
+//                   confirmButtonColor: '#3e53ef',
+//                   cancelButtonColor: '#d33',
+//                   confirmButtonText: 'Ok',
+//                   })
+//   }
   else if(prix == '')
   {
     Swal.fire({
@@ -282,6 +291,32 @@
                   confirmButtonText: 'Ok',
                   })
   }
+
+  else if(acces == '0' && intitule == "")
+  {
+    Swal.fire({
+                  title: 'Information!',
+                   text: "L'intitulé est obligatoire si le fichier provient d'un lien externe!!",
+                  icon: 'warning',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3e53ef',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok',
+                  })
+  }
+
+  // else if(correction_file == '')
+  // {
+  //   Swal.fire({
+  //                 title: 'Information!',
+  //                  text: "Veuillez entrer renseigner la correction de l'épreuve!!",
+  //                 icon: 'warning',
+  //                 showCancelButton: false,
+  //                 confirmButtonColor: '#3e53ef',
+  //                 cancelButtonColor: '#d33',
+  //                 confirmButtonText: 'Ok',
+  //                 })
+  // }
 
   else{
       document.querySelector('#formation_create').submit();
